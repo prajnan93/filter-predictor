@@ -9,7 +9,7 @@ Here's how to set up `autofilter` for local development and testing.
 
 2. Clone the repo locally::
 
-    `$ git clone https://github.com/prajnan93/filter-predictor.git`
+    $ git clone https://github.com/prajnan93/filter-predictor.git
 
 3. Create a Conda virtual environment using the `env.yml` file.  Install your local copy of the package into the environment::
 
@@ -21,6 +21,6 @@ Here's how to set up `autofilter` for local development and testing.
 
     - After `git commit -m 'commit msg'`, pre-commit hooks will auto format codes in `.py` files.
 
-    - This will require to stage `git add .` and commit `git commit -m 'commit msg'` again.
+    - Stage `git add .` and commit `git commit -m 'commit msg'` again after isort/black shows `failed`.
 
 ___
