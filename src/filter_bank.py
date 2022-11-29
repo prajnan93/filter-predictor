@@ -24,9 +24,9 @@ _FILTERS = {
             "brightness": 0.0,
             "exposure": 0.2,
             "contrast": -0.1,
-            "warmth": 0.4,
-            "saturation": 0.5,
-            "vibrance": 0.9,
+            "warmth": 0.6,
+            "saturation": 0.3,
+            "vibrance": 0.5,
             "hue": 0.0,
             "gamma": 1.3,
         },
@@ -94,5 +94,10 @@ _FILTERS = {
             "hue": 0.02,
             "gamma": 1.3,
         },
+    },
+    "vignette": {
+        1: {"size": 150, "brightness": 0.1, "contrast": 0.2},
+        2: {"size": 200, "brightness": 0.2, "contrast": 0.4},
+        3: {"size": 300, "brightness": 0.4, "contrast": 0.8},
     },
 }
