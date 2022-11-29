@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>Auto Filter</title>
+<link rel="stylesheet" href="../static/styles/styles.css" type="text/css" />
+</head>
+<body>
+<div id="header"><h1>Auto Filter</h1>
+</div>
+<div align = "center">
+<br>
+<form id="upload-form" action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+    <input id="file-picker" type="file" name="file" accept="image/*" multiple>
+    <input type="submit" value="Upload" id="upload-button">
+</form>
+</div>
+<br>
+<div align="center">
+  <div id="uploaded-image">
+    <img src="{{source}}" height="150">
+  </div>
+<table border="1px">
+  {%for key, value in filter_cats.items()%}
+  <tr>
+      <td align="center">{{key}}</td>
+      {%for src in value%}
+        <!-- <td><img src="{{src}}" height="150"></td> -->
+        <td>{{src}}</td>
+      {%endfor%}
+  </tr>
+  {%endfor%}
+</table>
+</div>
+</body>
+</html>

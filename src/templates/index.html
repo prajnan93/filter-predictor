@@ -1,0 +1,16 @@
+<html>
+<head>
+<title>Auto Filter</title>
+<link rel="stylesheet" href="../static/styles/styles.css" type="text/css" />
+</head>
+<body>
+<div id="header"><h1 style="color=powderblue">AutoFilter</h1></div>
+<br>
+<div align = "center">
+<form id="upload-form" action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+    <input id="file-picker" type="file" name="file" accept="image/*" multiple>
+    <input type="submit" value="Upload" id="upload-button">
+</form>
+</div>
+</body>
+</html>
