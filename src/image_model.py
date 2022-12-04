@@ -26,10 +26,10 @@ class ImageModel:
         if filepath is not None:
             self.original = Image.open(filepath)
 
-    def apply_filter(self, filter_name, config_id, kernel_size=11):
-        config = _FILTERS[filter_name][config_id]
+    def apply_filter(self, filter_id, config_id, kernel_size=11):
+        config = _FILTERS[filter_id][config_id]
 
-        if FILTER_NAMES[filter_name].lower() == "vignette":
+        if FILTER_NAMES[filter_id].lower() == "vignette":
             self.filtered = self.appy_vignette(
                 sigma=config["size"],
                 brightness=config["brightness"],
@@ -90,9 +90,9 @@ class ImageModel:
     def load(self, filepath):
         self.original = Image.open(filepath)
 
-    def save(self, filepath, filter_name, config_id):
+    def save(self, filepath, filter_id, config_id):
         if self.filtered is None:
             return
 
-        filepath = os.path.join("filepath", filter_name, f"{config_id}.jpg")
+        filepath = os.path.join("filepath", FILTER_NAMES[filter_id], f"{config_id}.jpg")
         self.filtered.save(filepath)
