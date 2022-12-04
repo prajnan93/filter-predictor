@@ -2,7 +2,7 @@ import os
 
 import cv2
 import numpy as np
-from filter_bank import _FILTERS
+from filter_bank import _FILTERS, FILTER_NAMES
 from PIL import Image, ImageFilter
 from pillow_lut import load_cube_file, rgb_color_enhance
 
@@ -29,7 +29,7 @@ class ImageModel:
     def apply_filter(self, filter_name, config_id, kernel_size=11):
         config = _FILTERS[filter_name][config_id]
 
-        if filter_name.lower() == "vignette":
+        if FILTER_NAMES[filter_name].lower() == "vignette":
             self.filtered = self.appy_vignette(
                 sigma=config["size"],
                 brightness=config["brightness"],
