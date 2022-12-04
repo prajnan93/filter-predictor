@@ -1,5 +1,5 @@
 import numpy as np
-import constants
+import filter_bank as constants
 
 """
 Simulator generates category ID from a uniform distribution, then for
@@ -23,16 +23,16 @@ class DataSimulator():
             4: [0.2, 0.3, 0.4, 0.1],
             5: [0.2, 0.4, 0.1, 0.3]
         }
-        self.config_probs = (0.4, 0.3, 0.2, 0.1)
+        self.config_probs = (0.3, 0.5, 0.2)
 
     def generate_samples(self, n_samples=50):
         np.random.seed(self.random_seed)
         samples = []
         category_ids = np.random.choice(list(constants.CATEGORIES.keys()), size=n_samples)
         for id in category_ids:
-            filter_id = np.random.choice(list(constants.FILTERS.keys()),
+            filter_id = np.random.choice(list(constants.FILTER_NAMES.keys()),
                                          p=self.filter_probs[id])
-            config_id = np.random.choice(list(constants.FILTER_CONFIGS.keys()),
+            config_id = np.random.choice([0,1,2],
                                          p=self.config_probs)
             samples.append((id, filter_id, config_id))
         return samples

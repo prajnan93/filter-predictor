@@ -1,6 +1,12 @@
 from flask import Flask, render_template, request, url_for
 import os
 from werkzeug.utils import secure_filename
+from auto_filter import AutoFilter
+from image_model import ImageModel
+from filter_bank import CATEGORIES, FILTER_NAMES
+
+auto_filter = AutoFilter(verbose=True)
+
 
 app_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -25,8 +31,29 @@ def upload():
     filename = secure_filename(file.filename)
     location = target + filename
     file.save(location)
+
+    filename_wo_ext = os.path.splitext(filename)[0]
+
+    image_model = ImageModel(location)
+
+    # Call classifier to get the category
+
+    category_id = 1
+
+    filter_ranks = auto_filter.get_filter_ranking(category_id=category_id)
+    processed_files = []
+    for filter_id, filter_configs in filter_ranks:
+        processed_configs = []
+        for filter_config_id in filter_configs:
+            image_model.apply_filter(filter_id=filter_id, config_id=filter_config_id)
+            processed_configs.append(image_model.save(filename_wo_ext, 
+            filter_id=filter_id, config_id=filter_config_id))
+        processed_files.append((FILTER_NAMES[filter_id], processed_configs))
+
+    print(processed_files)
+
     return render_template("upload.html", nb_faces=2, source=os.path.join(UPLOAD_FOLDER, filename),
-     filter_cats={'Vivid':[1,2,3], 'Monochrome':[1,2,3], 'Dramatic':[1,2,3]})
+     processed_files=processed_files)
 
 if __name__ == "__main__":
     app.run()

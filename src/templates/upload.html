@@ -19,12 +19,12 @@
     <img src="{{source}}" height="150">
   </div>
 <table border="1px">
-  {%for key, value in filter_cats.items()%}
+  {%for filter, files in processed_files%}
   <tr>
-      <td align="center">{{key}}</td>
-      {%for src in value%}
-        <!-- <td><img src="{{src}}" height="150"></td> -->
-        <td>{{src}}</td>
+      <td align="center">{{filter}}</td>
+      {%for src in files%}
+        <td><img src="{{src}}" height="150"></td>
+        <!-- <td>{{src}}</td> -->
       {%endfor%}
   </tr>
   {%endfor%}

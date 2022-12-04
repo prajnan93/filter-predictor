@@ -90,9 +90,12 @@ class ImageModel:
     def load(self, filepath):
         self.original = Image.open(filepath)
 
-    def save(self, filepath, filter_id, config_id):
+    def save(self, filename, filter_id, config_id):
         if self.filtered is None:
             return
 
-        filepath = os.path.join("filepath", FILTER_NAMES[filter_id], f"{config_id}.jpg")
+        dirpath = os.path.join('static', filename, FILTER_NAMES[filter_id])
+        os.makedirs(dirpath, exist_ok=True)
+        filepath = os.path.join(dirpath, f"{config_id}.jpg")
         self.filtered.save(filepath)
+        return filepath
