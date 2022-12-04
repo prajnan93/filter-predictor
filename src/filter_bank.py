@@ -1,6 +1,28 @@
+FILTER_NAMES = {
+    1: "Vivid",
+    2: "Monochrome",
+    3: "Dramatic",
+    4: "Vignette"
+}
+
+CATEGORIES = {
+    1: "Food",
+    2: "Landscape",
+    3: "Animal",
+    4: "Portrait",
+    5: "Placeholder"
+}
+
+FILTER_CONFIGS = {
+    1: [(1,1,3,4,5), (1,2,3,4,5), (1,3,3,4,5), (1,4,3,4,5)],
+    2: [(2,1,3,4,5), (2,2,3,4,5), (2,3,3,4,5), (1,4,3,4,5)],
+    3: [(3,1,3,4,5), (3,2,3,4,5), (3,3,3,4,5), (1,4,3,4,5)],
+    4: [(4,1,3,4,5), (4,2,3,4,5), (4,3,3,4,5), (1,4,3,4,5)]
+}
+
 _FILTERS = {
-    "vivid": {
-        1: {
+    1: [
+        {
             "brightness": 0.0,
             "exposure": 0.5,
             "contrast": -0.1,
@@ -10,7 +32,7 @@ _FILTERS = {
             "hue": 0.0,
             "gamma": 1.3,
         },
-        2: {
+        {
             "brightness": 0.0,
             "exposure": 0.5,
             "contrast": 0.1,
@@ -20,7 +42,7 @@ _FILTERS = {
             "hue": 0.0,
             "gamma": 1.3,
         },
-        3: {
+        {
             "brightness": 0.0,
             "exposure": 0.2,
             "contrast": -0.1,
@@ -29,10 +51,10 @@ _FILTERS = {
             "vibrance": 0.5,
             "hue": 0.0,
             "gamma": 1.3,
-        },
-    },
-    "monochrome": {
-        1: {
+        }
+    ],
+    2: [
+        {
             "brightness": 0.0,
             "exposure": 0.0,
             "contrast": -0.2,
@@ -42,7 +64,7 @@ _FILTERS = {
             "hue": 0.0,
             "gamma": 1.3,
         },
-        2: {
+        {
             "brightness": 0.0,
             "exposure": 0.0,
             "contrast": 0.1,
@@ -52,7 +74,7 @@ _FILTERS = {
             "hue": 0.0,
             "gamma": 1.3,
         },
-        3: {
+        {
             "brightness": -0.1,
             "exposure": 0.9,
             "contrast": 0.0,
@@ -61,10 +83,11 @@ _FILTERS = {
             "vibrance": -0.5,
             "hue": 0.0,
             "gamma": 1.3,
-        },
-    },
-    "dramatic": {
-        1: {
+        }
+    ],
+    3: [
+
+        {
             "brightness": -0.1,
             "exposure": 0.0,
             "contrast": 0.0,
@@ -74,7 +97,7 @@ _FILTERS = {
             "hue": 0.0,
             "gamma": 1.3,
         },
-        2: {
+        {
             "brightness": -0.1,
             "exposure": 0.4,
             "contrast": 0.2,
@@ -84,7 +107,7 @@ _FILTERS = {
             "hue": 0.03,
             "gamma": 1.3,
         },
-        3: {
+        {
             "brightness": -0.1,
             "exposure": 0.4,
             "contrast": 0.1,
@@ -93,11 +116,11 @@ _FILTERS = {
             "vibrance": -0.8,
             "hue": 0.02,
             "gamma": 1.3,
-        },
-    },
-    "vignette": {
-        1: {"size": 150, "brightness": 0.1, "contrast": 0.2},
-        2: {"size": 200, "brightness": 0.2, "contrast": 0.4},
-        3: {"size": 300, "brightness": 0.4, "contrast": 0.8},
-    },
+        }
+    ],
+    4: [
+        {"size": 150, "brightness": 0.1, "contrast": 0.2},
+        {"size": 200, "brightness": 0.2, "contrast": 0.4},
+        {"size": 300, "brightness": 0.4, "contrast": 0.8}
+    ]
 }
