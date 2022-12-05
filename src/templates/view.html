@@ -11,35 +11,14 @@
 </div>
 <div align = "center">
 <br>
-<form id="upload-form" action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
-    <input id="file-picker" type="file" name="file" accept="image/*" multiple>
-    <input type="submit" value="Upload" id="upload-button">
-</form>
-</div>
-<br>
 <div align="center">
   <div id="uploaded-image">
-    <img src="{{source}}" height="300">
+    <img src="{{source}}" height="500">
   </div>
-<table border="0px" margin="10px 0 0 0">
-  <tr>
-    <th>Rank</th>
-    <th>Filter</th>
-    <th>1</th>
-    <th>2</th>
-    <th>3</th>
-  </tr>
-  {%for filter, files in processed_files%}
-  <tr>
-    <td align="center">{{loop.index}}</td>
-      <td align="center">{{filter}}</td>
-      {%for src in files%}
-        <td><a href="/view?file={{src}}&category={{category}}"><img src="{{src}}" height="150"></a></td>
-        <!-- <td>{{src}}</td> -->
-      {%endfor%}
-  </tr>
-  {%endfor%}
-</table>
+  <form method="post" action="{{ url_for('download') }}">
+      <button type="submit" name="submit_button" value="{{source}}&{{category}}">Download</button>
+  </form>
+  <a href="/">Upload another file</a>
 </div>
 </body>
 </html>

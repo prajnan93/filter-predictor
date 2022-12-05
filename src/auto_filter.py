@@ -54,17 +54,23 @@ class DataStore:
             with open(fname, 'r') as f:
                 self.datastore = json.load(f, object_hook=jsonKV2int)
         if self.verbose:
-            print("Data store loaded:\n", self.datastore)
+            print("Data store loaded:\n")
+            pprint(self.datastore)
 
     def save_store(self, fname="store.json"):
         json_store = json.dumps(self.datastore)
         with open(fname, "w") as f:
             f.write(json_store)
         if self.verbose:
-            print("Store saved:\n", self.datastore)
+            print("Store saved:\n")
+            pprint(self.datastore)
 
-    def reward(self, category_id, filter_id, config_id, reward_amt=1):
+    def reward(self, category_id, filter_id, config_id, reward_amt=1, save=False):
+        if self.verbose:
+            print("Updating:", category_id, filter_id, config_id, reward_amt)
         self.datastore[category_id][filter_id][config_id] += reward_amt
+        if save:
+            self.save_store()
 
     def display_store(self):
         pprint(self.datastore)
@@ -75,7 +81,7 @@ class DataStore:
 
 class AutoFilter:
     def __init__(self, verbose=False) -> None:
-        self.datastore = DataStore()
+        self.datastore = DataStore(verbose=verbose)
         self.datastore.load_store()
         self.verbose = verbose
 
@@ -83,7 +89,7 @@ class AutoFilter:
         data_sim = DataSimulator()
         samples = data_sim.generate_samples(n_samples=n_samples)
         for sample in samples:
-            self.reward(category_id=sample[0], filter_id=sample[1], config_id=sample[2])
+            self.datastore.reward(category_id=sample[0], filter_id=sample[1], config_id=sample[2])
         self.datastore.save_store()
         if self.verbose:
             self.datastore.display_store()
@@ -104,9 +110,8 @@ class AutoFilter:
         return ret_filters
 
     def reward(self, category_id, filter_id, config_id, reward_amt=1):
-        self.datastore.reward(category_id=category_id, filter_id=filter_id, config_id=config_id, reward_amt=reward_amt)
-    
-
-af = AutoFilter()
-af.simulate()
-print(af.get_filter_ranking(1))
+        self.datastore.reward(category_id=category_id, 
+        filter_id=filter_id, 
+        config_id=config_id, 
+        reward_amt=reward_amt,
+        save=True)
