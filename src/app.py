@@ -4,8 +4,10 @@ from werkzeug.utils import secure_filename
 from auto_filter import AutoFilter
 from image_model import ImageModel
 from filter_bank import CATEGORIES, FILTER_NAMES
+from image_classifier import ImageClassifier
 
 auto_filter = AutoFilter(verbose=True)
+image_classifier = ImageClassifier()
 
 app_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -39,6 +41,8 @@ def upload():
     image_model = ImageModel(location)
 
     # Call classifier to get the category
+    category_id = image_classifier.classify_image(path=location)
+    print(category_id)
 
     category_id = 1
 
