@@ -7,20 +7,16 @@
 <link rel="stylesheet" href="../static/styles/styles.css" type="text/css" />
 </head>
 <body>
-<div id="header"><h1>Auto Filter</h1>
-</div>
-<div align = "center">
-<br>
-<form id="upload-form" action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
-    <input id="file-picker" type="file" name="file" accept="image/*" multiple>
-    <input type="submit" value="Upload" id="upload-button">
-</form>
+<div id="header"><h1><b>AutoFilter</b></h1>
 </div>
 <br>
 <div align="center">
   <div id="uploaded-image">
     <img src="{{source}}" height="300">
   </div>
+  <p>
+    <b>Detected: </b>{{category_name}}
+  </p>
 <table border="0px" margin="10px 0 0 0">
   <tr>
     <th>Rank</th>

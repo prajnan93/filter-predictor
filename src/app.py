@@ -40,7 +40,7 @@ def upload():
 
     # Call classifier to get the category
 
-    category_id = 1
+    category_id = 3
 
     filter_ranks = auto_filter.get_filter_ranking(category_id=category_id)
     processed_files = []
@@ -58,7 +58,8 @@ def upload():
     return render_template("upload.html", 
     source=uploaded_image,
     processed_files=processed_files,
-    category=category_id)
+    category=category_id,
+    category_name=CATEGORIES[category_id])
 
 @app.route("/view", methods=['GET'])
 def view():
@@ -76,7 +77,10 @@ def download():
     filter = file_location.split("\\")[2]
     filter_id = list(FILTER_NAMES.values()).index(filter)+1
     config_id = int(os.path.splitext(file_location.split("\\")[3])[0])
-    auto_filter.reward(category_id=category, filter_id=filter_id, config_id=config_id, reward_amt=2000)
+    auto_filter.reward(category_id=category, 
+    filter_id=filter_id, 
+    config_id=config_id, 
+    reward_amt=150)
     return send_file(file_location, as_attachment=True)
 
 if __name__ == "__main__":
