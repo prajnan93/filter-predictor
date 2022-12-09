@@ -6,7 +6,7 @@ from image_model import ImageModel
 from filter_bank import CATEGORIES, FILTER_NAMES
 from image_classifier import ImageClassifier
 
-auto_filter = AutoFilter(verbose=True)
+auto_filter = AutoFilter(verbose=False)
 image_classifier = ImageClassifier()
 
 app_dir = os.path.dirname(os.path.abspath(__file__))
@@ -41,10 +41,10 @@ def upload():
     image_model = ImageModel(location)
 
     # Call classifier to get the category
-    category_id = image_classifier.classify_image(path=location)
+    category_id, category_name = image_classifier.classify_image(path=location)
     print(category_id)
 
-    category_id = 3
+    # category_id = 3
 
     filter_ranks = auto_filter.get_filter_ranking(category_id=category_id)
     processed_files = []
@@ -63,7 +63,7 @@ def upload():
     source=uploaded_image,
     processed_files=processed_files,
     category=category_id,
-    category_name=CATEGORIES[category_id])
+    category_name=CATEGORIES[category_id] +", "+ category_name)
 
 @app.route("/view", methods=['GET'])
 def view():

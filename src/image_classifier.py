@@ -39,8 +39,8 @@ class ImageClassifier:
             score = prediction[class_id].item()
             category_name = self.weights.meta["categories"][class_id]
             print(f"{category_name}: {100 * score:.1f}%")
-            return category_id if category_id else 5
-        return 5
+            return (category_id, category_name) if category_id else (5, None)
+        return (5, None)
 
 
 if __name__ == "__main__":
